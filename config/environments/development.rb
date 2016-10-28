@@ -26,6 +26,8 @@ Rails.application.configure do
     config.cache_store = :null_store
   end
 
+  config.reload_classes_only_on_change = false
+
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false
 
