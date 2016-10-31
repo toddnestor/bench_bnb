@@ -6,9 +6,13 @@ import { receiveCurrentUser,
        } from '../actions/session_actions';
 
 import { login, signup, logout } from '../util/session_api_util';
+import { hashHistory } from 'react-router';
 
 export default ({ getState, dispatch }) => next => action => {
-  const success = user => dispatch( receiveCurrentUser( user ) );
+  const success = user => {
+    dispatch( receiveCurrentUser( user ) );
+    hashHistory.push('/');
+  }
   const error = xhr => dispatch( receiveErrors( xhr.responseJSON ) );
 
   switch(action.type) {

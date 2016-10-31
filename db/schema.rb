@@ -10,17 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161031174353) do
+ActiveRecord::Schema.define(version: 20161031220610) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "benches", force: :cascade do |t|
-    t.string   "description", null: false
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.string   "description",             null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
     t.decimal  "lng"
     t.decimal  "lat"
+    t.integer  "seating",     default: 0
     t.index ["description"], name: "index_benches_on_description", using: :btree
   end
 

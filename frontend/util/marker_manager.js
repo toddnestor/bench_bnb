@@ -15,11 +15,13 @@ export default class MarkerManager {
   _benchesToAdd() {
     return _.values(this.benches).filter( bench => {
       let newBench = true;
+      bench.lat = this.round(parseFloat(bench.lat), 6);
+      bench.lng = this.round(parseFloat(bench.lng), 6);
 
       this.markers.forEach( marker => {
         let markerLat = this.round(marker.position.lat(), 6);
         let markerLng = this.round(marker.position.lng(), 6);
-        if( markerLat == parseFloat(bench.lat) && markerLng == parseFloat(bench.lng) ) {
+        if( markerLat == bench.lat && markerLng == bench.lng ) {
           newBench = false;
         }
       });
@@ -33,7 +35,7 @@ export default class MarkerManager {
       let markerLat = this.round(marker.position.lat(), 6);
       let markerLng = this.round(marker.position.lng(), 6);
 
-      return !_.find(_.values(this.benches), {lat: '' + markerLat, lng: '' + markerLng});
+      return !_.find(_.values(this.benches), {lat: markerLat, lng: markerLng});
     });
   }
 
@@ -52,7 +54,6 @@ export default class MarkerManager {
   _removeMarker(marker) {
     this.markers = _.without(this.markers, marker);
     marker.setMap(null);
-    console.log(this.markers);
   }
 
   updateMarkers(benches) {
