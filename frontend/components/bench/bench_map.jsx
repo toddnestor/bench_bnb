@@ -34,7 +34,7 @@ class BenchMap extends React.Component {
         northEast: {lat: ne.lat(), lng: ne.lng()}
       };
 
-      this.props.updateBounds(boundsFilter);
+      this.props.updateFilter('bounds', boundsFilter);
     });
 
     this.map.addListener('click', e => {

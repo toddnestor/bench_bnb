@@ -1,15 +1,17 @@
-import { UPDATE_BOUNDS } from '../actions/filter_actions';
+import { UPDATE_FILTER } from '../actions/filter_actions';
 
 const _defaultState = {
-  bounds: {}
+  bounds: {},
+  minSeating: 0,
+  maxSeating: 10
 };
 
 const FiltersReducer = (state = _defaultState, action) => {
   Object.freeze(state);
 
   switch( action.type ) {
-    case UPDATE_BOUNDS:
-      return _.merge({}, state, {bounds: action.bounds});
+    case UPDATE_FILTER:
+      return _.merge({}, state, {[action.filter]: action.value});
     default:
       return state;
   }

@@ -3,6 +3,11 @@ class Api::BenchesController < ApplicationController
 
   def index
     @benches = Bench.in_bounds(params[:bounds])
+
+    if( params[:max_seating])
+      min_seating = params[:min_seating] || 0
+      @benches = @benches.where(seating: (min_seating..params[:max_seating]))
+    end
   end
 
   def create
